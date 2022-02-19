@@ -32,7 +32,7 @@ select
     cast(congestion_surcharge as numeric) as congestion_surcharge
 
 from {{ source('my_staging_gcp', 'green_tripdata_external_table') }}
-where venderid is not null
+where vendorid is not null
 
 {% if var('is_test_run', default=true) %}
 
