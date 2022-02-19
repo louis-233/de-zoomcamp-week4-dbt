@@ -10,19 +10,19 @@ dim_zones as (
 )
 
 select 
-    fhv_data.dispatching_base_num
+    fhv_data.dispatching_base_num,
 
     -- Pick up
-    fhv_data.pickup_datetime
+    fhv_data.pickup_datetime,
     pickup_zone.borough as pickup_borough, 
     pickup_zone.zone as pickup_zone, 
-    fhv_data.PULocationID as pickup_locationid
+    fhv_data.PULocationID as pickup_locationid,
 
     -- Drop off
-    fhv_data.dropoff_datetime
+    fhv_data.dropoff_datetime,
     dropoff_zone.borough as dropoff_borough, 
     dropoff_zone.zone as dropoff_zone,  
-    fhv_data.DOLocationID as dropoff_locationid
+    fhv_data.DOLocationID as dropoff_locationid,
 
     fhv_data.SR_Flag
 
