@@ -1,4 +1,6 @@
 {{ config(materialized='view') }}
+{# NOTE: 'view' here means we create a 'view' table on big query #}
+{# using 'table' instead would actually create a table #}
 
 select
     -- identifiers

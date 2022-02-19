@@ -35,3 +35,8 @@ models:
   ny_taxi_project:
     # Applies to all files under models/example/
     
+seeds:
+  ny_taxi_project:
+    taxi_zone_lookup:
+      +column_types:
+        locationid: numeric
