@@ -29,6 +29,7 @@ select
     cast(improvement_surcharge as numeric) as improvement_surcharge,
     cast(total_amount as numeric) as total_amount,
     cast(payment_type as integer) as payment_type,
+    {{ get_payment_type_description('payment_type') }} as payment_type_description,
     cast(congestion_surcharge as numeric) as congestion_surcharge
 
 from {{ source('my_staging_gcp', 'yellow_tripdata_external_table') }}
