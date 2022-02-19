@@ -2,6 +2,16 @@
 {# NOTE: 'view' here means we create a 'view' table on big query #}
 {# using 'table' instead would actually create a table #}
 
+
+{# Here we filter out rows where vendorid+pickup_datetime are dupes #}
+{# so that are surrogate key "tripid" is unique#}
+with tripdata as 
+(
+  select *,
+    row_number() over(partition by vendorid, lpep_pickup_datetime) as rn
+  from {{ source('my_staging_gcp', 'green_tripdata') }}
+  where vendorid is not null 
+)
 select
     -- identifiers
     {{ dbt_utils.surrogate_key(['vendorid', 'lpep_pickup_datetime']) }} as tripid,
@@ -32,9 +42,8 @@ select
     cast(payment_type as integer) as payment_type,
     {{ get_payment_type_description('payment_type') }} as payment_type_description,
     cast(congestion_surcharge as numeric) as congestion_surcharge
-
-from {{ source('my_staging_gcp', 'green_tripdata') }}
-where vendorid is not null
+from tripdata
+where rn=1
 
 {% if var('is_test_run', default=true) %}
 
