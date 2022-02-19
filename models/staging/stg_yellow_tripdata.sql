@@ -32,7 +32,7 @@ select
     {{ get_payment_type_description('payment_type') }} as payment_type_description,
     cast(congestion_surcharge as numeric) as congestion_surcharge
 
-from {{ source('my_staging_gcp', 'yellow_tripdata_external_table') }}
+from {{ source('my_staging_gcp', 'yellow_tripdata') }}
 where vendorid is not null
 
 {% if var('is_test_run', default=true) %}
