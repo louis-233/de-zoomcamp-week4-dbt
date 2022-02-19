@@ -1,5 +1,6 @@
 {#
     This macro returns the description of the payment_type 
+    (NOTE: this is a jinja templated macro!!)
 #}
 
 {% macro get_payment_type_description(payment_type) -%}
