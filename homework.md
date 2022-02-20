@@ -64,6 +64,14 @@ Run it via the CLI without limits (is_test_run: false) and filter records with p
 
 #### answer
 
+```sql
+SELECT count(*)
+FROM fact_fhv_trips
+WHERE pickup_datetime >= '2019-01-01'
+  AND pickup_datetime < '2020-01-01';
+```
+
+`22_676_253`
 
 
 ### Question 5: 
@@ -71,3 +79,7 @@ Run it via the CLI without limits (is_test_run: false) and filter records with p
 Create a dashboard with some tiles that you find interesting to explore the data. One tile should show the amount of trips per month, as done in the videos for fact_trips, based on the fact_fhv_trips table.
 
 
+#### answer
+
+January has about 19 million record and the other months around 100-300k
+So there's probably some erroneous data in January.
