@@ -7,8 +7,7 @@
 {# so that are surrogate key "tripid" is unique#}
 with tripdata as 
 (
-  select *,
-    row_number() over(partition by vendorid, lpep_pickup_datetime) as rn
+  select *, row_number() over(partition by vendorid, lpep_pickup_datetime) as rn
   from {{ source('my_staging_gcp', 'green_tripdata') }}
   where vendorid is not null 
 )
